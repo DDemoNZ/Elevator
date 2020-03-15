@@ -129,7 +129,7 @@ public class ElevatorService {
         }
     }
 
-    public static boolean checkPassengersQuantity(Building building) {
+    public static boolean checkPassengersQuantity(Building building, Elevator elevator) {
         long checkPassengersQuantity = building.getFloorsOfBuilding().stream()
                 .map(Floor::getPassengersOnTheFloor)
                 .flatMap(Collection::stream)
@@ -138,6 +138,6 @@ public class ElevatorService {
                 .filter(Objects::nonNull)
                 .count();
 
-        return checkPassengersQuantity != 0;
+        return checkPassengersQuantity != 0 || elevator.getPassengers().size() != 0;
     }
 }

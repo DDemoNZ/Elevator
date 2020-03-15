@@ -21,8 +21,7 @@ public class Dispatcher {
                 + floorQuantity + " floors in the building.\n"
                 + passengersOnTheFloor + " passengers on every floor.");
 
-        while (ElevatorService.checkPassengersQuantity(building)
-                || elevator.getPassengers().size() != 0) {
+        while (ElevatorService.checkPassengersQuantity(building, elevator)) {
             ElevatorService.showElevatorStep(building, elevator);
             ElevatorService.boarding(building, elevator);
             stepCounter++;
