@@ -32,7 +32,7 @@ public class ElevatorService {
         System.out.println("\n                  Step " + Dispatcher.stepCounter);
         for (int i = Dispatcher.floorQuantity - 1, n = Dispatcher.floorQuantity; i >= 0; i--, n--) {
             List<Passenger> floor = floorList.get(i).getPassengersOnTheFloor();
-            System.out.print("elevatorTask.models.Floor " + n + " - ");
+            System.out.print("Floor " + n + " - ");
             for (int j = 0; j < Dispatcher.passengersOnTheFloor; j++) {
                 if (floor.get(j) == null) {
                     System.out.printf("%4s", " ");
