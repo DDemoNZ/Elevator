@@ -12,7 +12,7 @@ public class App {
 
         System.out.println("Elevator started work.");
         System.out.println(floorQuantity + " floors in the building.");
-        System.out.println(passengersOnTheFloor + " passengers on floor.");
+        System.out.println(passengersOnTheFloor + " passengers on every floor.");
 
         while (ElevatorService.checkPassengersQuantity(building)) {
             ElevatorService.showElevatorStep(building, elevator);
