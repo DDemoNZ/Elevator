@@ -17,9 +17,9 @@ public class Dispatcher {
         Elevator elevator = new Elevator();
         ElevatorService.setPassengersOnTheFloors(building);
 
-        System.out.println("elevatorTask.models.Elevator started work.");
-        System.out.println(floorQuantity + " floors in the building.");
-        System.out.println(passengersOnTheFloor + " passengers on every floor.");
+        System.out.println("Elevator started work.\n"
+                + floorQuantity + " floors in the building.\n"
+                + passengersOnTheFloor + " passengers on every floor.");
 
         while (ElevatorService.checkPassengersQuantity(building)) {
             ElevatorService.showElevatorStep(building, elevator);
@@ -27,9 +27,8 @@ public class Dispatcher {
             stepCounter++;
         }
 
-        System.out.println("\nelevatorTask.models.Elevator has finished work."
-                + "\nWork was finished in " + stepCounter + " steps.\nThere were "
-                + floorQuantity * passengersOnTheFloor + " passengers on " + floorQuantity
-                + " floors.");
+        System.out.println("\nElevator has finished work. \nWork was finished in " + stepCounter
+                + " steps.\nThere were " + floorQuantity * passengersOnTheFloor + " passengers on "
+                + floorQuantity + " floors.");
     }
 }
