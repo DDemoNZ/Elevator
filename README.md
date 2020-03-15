@@ -1,5 +1,4 @@
-"# Elevator" 
-"#Elevator task" 
+" #Elevator " 
 
 Лифт в здании
 

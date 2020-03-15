@@ -1,7 +1,12 @@
+package elevatorTask.models;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import elevatorTask.utils.ElevatorDirection;
+
 public class Elevator {
+
     private int maxCapacity;
     private List<Passenger> elevatorPassengers;
     private int currentCapacity;

@@ -1,16 +1,25 @@
+package elevatorTask.service;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import elevatorTask.Dispatcher;
+import elevatorTask.models.Building;
+import elevatorTask.models.Elevator;
+import elevatorTask.models.Floor;
+import elevatorTask.models.Passenger;
+import elevatorTask.utils.ElevatorDirection;
+
 public class ElevatorService {
 
     public static void setPassengersOnTheFloors(Building building) {
         List<Floor> buildingFloors = building.getFloorsOfBuilding();
-        for (int i = 0; i < App.floorQuantity; i++) {
+        for (int i = 0; i < Dispatcher.floorQuantity; i++) {
             Floor floor = new Floor();
             List<Passenger> passengers = floor.getPassengersOnTheFloor();
-            for (int j = 0; j < App.passengersOnTheFloor; j++) {
+            for (int j = 0; j < Dispatcher.passengersOnTheFloor; j++) {
                 passengers.add(new Passenger(i));
             }
             buildingFloors.add(i, floor);
@@ -20,11 +29,11 @@ public class ElevatorService {
     public static void showElevatorStep(Building building, Elevator elevator) {
         List<Floor> floorList = building.getFloorsOfBuilding();
         List<Passenger> elevatorPassengers = elevator.getPassengers();
-        System.out.println("\n                  Step " + App.stepCounter);
-        for (int i = App.floorQuantity - 1, n = App.floorQuantity; i >= 0; i--, n--) {
+        System.out.println("\n                  Step " + Dispatcher.stepCounter);
+        for (int i = Dispatcher.floorQuantity - 1, n = Dispatcher.floorQuantity; i >= 0; i--, n--) {
             List<Passenger> floor = floorList.get(i).getPassengersOnTheFloor();
-            System.out.print("Floor " + n + " - ");
-            for (int j = 0; j < App.passengersOnTheFloor; j++) {
+            System.out.print("elevatorTask.models.Floor " + n + " - ");
+            for (int j = 0; j < Dispatcher.passengersOnTheFloor; j++) {
                 if (floor.get(j) == null) {
                     System.out.printf("%4s", " ");
                 } else {
@@ -66,8 +75,8 @@ public class ElevatorService {
     private static void passengerEnterIntoElevator(Elevator elevator, List<Passenger> floor) {
         if (elevator.getCurrentFloor() == 1 ||
                 elevator.getElevatorDirection() == ElevatorDirection.UP
-                && elevator.getCurrentFloor() != App.floorQuantity) {
-            for (int i = 0; i < App.passengersOnTheFloor; i++) {
+                        && elevator.getCurrentFloor() != Dispatcher.floorQuantity) {
+            for (int i = 0; i < Dispatcher.passengersOnTheFloor; i++) {
                 if (floor.get(i) != null
                         && floor.get(i).getNeededFloor() >= elevator.getCurrentFloor()
                         && elevator.getCurrentCapacity() < elevator.getMaxCapacity()) {
@@ -76,8 +85,8 @@ public class ElevatorService {
                 }
             }
         } else if (elevator.getElevatorDirection() == ElevatorDirection.DOWN
-                || elevator.getCurrentFloor() == App.floorQuantity) {
-            for (int i = 0; i < App.passengersOnTheFloor; i++) {
+                || elevator.getCurrentFloor() == Dispatcher.floorQuantity) {
+            for (int i = 0; i < Dispatcher.passengersOnTheFloor; i++) {
                 if (floor.get(i) != null
                         && floor.get(i).getNeededFloor() <= elevator.getCurrentFloor()
                         && elevator.getCurrentCapacity() < elevator.getMaxCapacity()) {
@@ -102,11 +111,11 @@ public class ElevatorService {
 
     public static void elevatorMoving(Elevator elevator) {
         if (elevator.getElevatorDirection() == ElevatorDirection.UP) {
-            if (elevator.getCurrentFloor() != App.floorQuantity) {
+            if (elevator.getCurrentFloor() != Dispatcher.floorQuantity) {
                 elevator.setCurrentFloor(elevator.getCurrentFloor() + 1);
-            } else if (elevator.getCurrentFloor() == App.floorQuantity) {
+            } else if (elevator.getCurrentFloor() == Dispatcher.floorQuantity) {
                 elevator.setElevatorDirection(ElevatorDirection.DOWN);
-            } else if (elevator.getCurrentFloor() + 1 >= App.floorQuantity) {
+            } else if (elevator.getCurrentFloor() + 1 >= Dispatcher.floorQuantity) {
                 elevator.setCurrentFloor(elevator.getCurrentFloor() - 1);
                 elevator.setElevatorDirection(ElevatorDirection.DOWN);
             }
