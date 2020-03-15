@@ -137,6 +137,7 @@ public class ElevatorService {
                 .stream()
                 .filter(Objects::nonNull)
                 .count();
+
         return checkPassengersQuantity != 0;
     }
 }
